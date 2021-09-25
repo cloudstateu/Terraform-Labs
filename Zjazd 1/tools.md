@@ -1,0 +1,5 @@
+* dowolna maszyna lub przeglądarka (praca w Azure Console)
+* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli#install)
+* [Klient GIT + konto (my będzie korzystać z github)](https://git-scm.com/downloads)
+* [Klient Terraform](https://www.terraform.io/downloads.html)
+* [Dowolny edytor np. VS CODE](https://code.visualstudio.com/download)
