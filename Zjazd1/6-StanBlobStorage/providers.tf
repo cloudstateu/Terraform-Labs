@@ -10,7 +10,7 @@ terraform {
         storage_account_name = "mzterraformstacc"
         container_name       = "terraform"
         key                  = "terraform.tfstate"
-        access_key           = "kv/L79Tr+bI1AsOfm4DwNitRAnuqcJ8VFZH2MDZvZgyg6jebrswM6YOnjSk1TwyXkLL3A2BoeMCY3n7ZhfhBRA==" # Może być przetrzymywany przy pomocy zmiennej środowiskowej ARM_ACCESS_KEY
+        #access_key           = "" # Może być przetrzymywany przy pomocy zmiennej środowiskowej ARM_ACCESS_KEY
     }
 }
 
