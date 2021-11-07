@@ -24,7 +24,7 @@ Generalnie chciałbym byś zmienił kod tak by:
 1) Stworzyc dla siebie dwa konta testowe w ramach Azure AD (tak, masz role :) )
 2) Stworzyć podane przez mnie role w ramach Subskrypcji i przypisać je do swoich wybranych kont z AzureAD na poziomie wcześniej utworzych grup zasobów
 3) Następnie, chciałbym byś przetestował działanie ról tworząc (nawet z portalu) odpowiednie zasoby
-Pomyśl, jak moesz w ramach organizacji podejść do tematu testowania ról
+Pomyśl, jak mozesz w ramach organizacji podejść do tematu testowania ról.
 
 ## Zadanie 2 - Polityki
 1) Zadbaj o to, by definicja Twoich polityk zawierała Twój prefix, by Twoje polityki były unikalne

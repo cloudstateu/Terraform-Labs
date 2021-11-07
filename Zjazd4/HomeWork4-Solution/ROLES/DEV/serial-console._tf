@@ -1,0 +1,45 @@
+###
+###
+### TODO:)
+###
+###                
+                "actions": [
+                    "Microsoft.Authorization/*/read",
+                    "Microsoft.Compute/virtualMachines/*",
+                    "Microsoft.Compute/disks/read",
+                    "Microsoft.Insights/alertRules/*",
+                    "Microsoft.Network/*/read",
+                    "Microsoft.ResourceHealth/availabilityStatuses/read",
+                    "Microsoft.Resources/deployments/*",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                    "Microsoft.Storage/storageAccounts/listKeys/action",
+                    "Microsoft.Storage/storageAccounts/read",
+                    "Microsoft.Support/*",
+                    "Microsoft.Compute/virtualMachineScaleSets/*/read"
+                ],
+                "notActions": [
+                    "Microsoft.Compute/virtualMachines/delete",
+                    "Microsoft.Compute/virtualMachines/reapply/*",
+                    "Microsoft.Compute/virtualMachines/redeploy/*",
+                    "Microsoft.Compute/virtualMachines/deallocate/*",
+                    "Microsoft.Compute/virtualMachines/generalize/action",
+                    "Microsoft.Compute/virtualMachines/capture/action",
+                    "Microsoft.Compute/virtualMachines/reimage/action",
+                    "Microsoft.Compute/virtualMachines/installPatches/action",
+                    "Microsoft.Compute/virtualMachines/patchAssessmentResults/*",
+                    "Microsoft.Compute/virtualMachines/runCommands/*",
+                    "Microsoft.Compute/locations/vmSizes/*",
+                    "Microsoft.Compute/skus/*",
+                    "Microsoft.Compute/hostGroups/*",
+                    "Microsoft.Compute/sshPublicKeys/*",
+                    "Microsoft.Compute/snapshots/*",
+                    "Microsoft.Compute/sharedVMExtensions/*",
+                    "Microsoft.Compute/restorePointCollections/*",
+                    "Microsoft.Compute/virtualMachines/extensions/*",
+                    "Microsoft.Compute/locations/*"
+                ],
+                "dataActions": [],
+                "notDataActions": [
+                    "Microsoft.Compute/virtualMachines/loginAsAdmin/action",
+                    "Microsoft.Compute/virtualMachines/login/action"
+                ]

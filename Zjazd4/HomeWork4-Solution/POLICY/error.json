@@ -1,0 +1,129 @@
+{
+    "deploymentStatusCode": -1,
+    "stage": 6,
+    "expected": true,
+    "error": {
+      "code": "InvalidTemplateDeployment",
+      "details": [
+        {
+          "code": "RequestDisallowedByPolicy",
+          "target": "qweqweqw",
+          "message": "Resource 'qweqweqw' was disallowed by policy. Policy identifiers: '[{\"policyAssignment\":{\"name\":\"polasg-mf-chm-allowedlocations\",\"id\":\"/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/rg-jenkins/providers/Microsoft.Authorization/policyAssignments/polasg-mf-chm-allowedlocations\"},\"policyDefinition\":{\"name\":\"mf-chm-allowedlocations\",\"id\":\"/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/providers/Microsoft.Authorization/policyDefinitions/mf-chm-allowedlocations\"}}]'.",
+          "additionalInfo": [
+            {
+              "type": "PolicyViolation",
+              "info": {
+                "policyDefinitionDisplayName": "mf-chm-allowedlocations",
+                "evaluationDetails": {
+                  "evaluatedExpressions": [
+                    {
+                      "result": "True",
+                      "expressionKind": "Field",
+                      "expression": "location",
+                      "path": "location",
+                      "expressionValue": "eastus",
+                      "targetValue": [
+                        "westeurope",
+                        "northeurope"
+                      ],
+                      "operator": "NotIn"
+                    },
+                    {
+                      "result": "True",
+                      "expressionKind": "Field",
+                      "expression": "location",
+                      "path": "location",
+                      "expressionValue": "eastus",
+                      "targetValue": "global",
+                      "operator": "NotEquals"
+                    },
+                    {
+                      "result": "True",
+                      "expressionKind": "Field",
+                      "expression": "type",
+                      "path": "type",
+                      "expressionValue": "Microsoft.Storage/storageAccounts",
+                      "targetValue": "Microsoft.AzureActiveDirectory/b2cDirectories",
+                      "operator": "NotEquals"
+                    }
+                  ]
+                },
+                "policyDefinitionId": "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/providers/Microsoft.Authorization/policyDefinitions/mf-chm-allowedlocations",
+                "policyDefinitionName": "mf-chm-allowedlocations",
+                "policyDefinitionEffect": "deny",
+                "policyAssignmentId": "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/rg-jenkins/providers/Microsoft.Authorization/policyAssignments/polasg-mf-chm-allowedlocations",
+                "policyAssignmentName": "polasg-mf-chm-allowedlocations",
+                "policyAssignmentDisplayName": "polasg-mf-chm-allowedlocations",
+                "policyAssignmentScope": "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/rg-jenkins"
+              }
+            }
+          ]
+        }
+      ],
+      "message": "The template deployment failed because of policy violation. Please see details for more information."
+    },
+    "subscriptionId": "ffca029c-a6e3-4630-9dfc-ff43256cd2f8",
+    "resourceGroupName": "rg-jenkins",
+    "location": "westeurope",
+    "deploymentName": "qweqweqw_1636208169830",
+    "details": {
+      "code": "InvalidTemplateDeployment",
+      "message": "The template deployment failed because of policy violation. Please see details for more information.",
+      "details": [
+        {
+          "code": "RequestDisallowedByPolicy",
+          "target": "qweqweqw",
+          "message": "Resource 'qweqweqw' was disallowed by policy. Policy identifiers: '[{\"policyAssignment\":{\"name\":\"polasg-mf-chm-allowedlocations\",\"id\":\"/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/rg-jenkins/providers/Microsoft.Authorization/policyAssignments/polasg-mf-chm-allowedlocations\"},\"policyDefinition\":{\"name\":\"mf-chm-allowedlocations\",\"id\":\"/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/providers/Microsoft.Authorization/policyDefinitions/mf-chm-allowedlocations\"}}]'.",
+          "additionalInfo": [
+            {
+              "type": "PolicyViolation",
+              "info": {
+                "policyDefinitionDisplayName": "mf-chm-allowedlocations",
+                "evaluationDetails": {
+                  "evaluatedExpressions": [
+                    {
+                      "result": "True",
+                      "expressionKind": "Field",
+                      "expression": "location",
+                      "path": "location",
+                      "expressionValue": "eastus",
+                      "targetValue": [
+                        "westeurope",
+                        "northeurope"
+                      ],
+                      "operator": "NotIn"
+                    },
+                    {
+                      "result": "True",
+                      "expressionKind": "Field",
+                      "expression": "location",
+                      "path": "location",
+                      "expressionValue": "eastus",
+                      "targetValue": "global",
+                      "operator": "NotEquals"
+                    },
+                    {
+                      "result": "True",
+                      "expressionKind": "Field",
+                      "expression": "type",
+                      "path": "type",
+                      "expressionValue": "Microsoft.Storage/storageAccounts",
+                      "targetValue": "Microsoft.AzureActiveDirectory/b2cDirectories",
+                      "operator": "NotEquals"
+                    }
+                  ]
+                },
+                "policyDefinitionId": "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/providers/Microsoft.Authorization/policyDefinitions/mf-chm-allowedlocations",
+                "policyDefinitionName": "mf-chm-allowedlocations",
+                "policyDefinitionEffect": "deny",
+                "policyAssignmentId": "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/rg-jenkins/providers/Microsoft.Authorization/policyAssignments/polasg-mf-chm-allowedlocations",
+                "policyAssignmentName": "polasg-mf-chm-allowedlocations",
+                "policyAssignmentDisplayName": "polasg-mf-chm-allowedlocations",
+                "policyAssignmentScope": "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/rg-jenkins"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
