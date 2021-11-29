@@ -43,11 +43,13 @@ resource "azurerm_kubernetes_cluster" "aks-dev-01" {
   location            = data.azurerm_resource_group.dev-prolab.location
   resource_group_name = data.azurerm_resource_group.dev-prolab.name
   
-  dns_prefix          = "aks-dev-01"
+  #dns_prefix          = "aks-dev-01"
 
-  #dns_prefix_private_cluster = "aks-dev-01"
+  dns_prefix_private_cluster = "aks-dev-01"
   
   #private_dns_zone_id = "None"
+
+  #private_cluster_public_fqdn_enabled = true
   
   private_dns_zone_id = data.azurerm_private_dns_zone.akszone.id
   
@@ -77,7 +79,7 @@ resource "azurerm_kubernetes_cluster" "aks-dev-01" {
 
     azure_active_directory {
       managed            = true
-      azure_rbac_enabled = true
+      azure_rbac_enabled = false
     }
   }
 
@@ -127,16 +129,16 @@ output "kube_config" {
   sensitive = true
 }
 
-resource "azurerm_kubernetes_cluster_node_pool" "aks-dev-01-np" {
-  name                  = "anotherpool"
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.aks-dev-01.id
-  vm_size               = "Standard_DS2_v2"
-  node_count            = 1
+# resource "azurerm_kubernetes_cluster_node_pool" "aks-dev-01-np" {
+#   name                  = "anotherpool"
+#   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks-dev-01.id
+#   vm_size               = "Standard_DS2_v2"
+#   node_count            = 1
 
-  tags = {
-    Environment = "Production"
-  }
-}
+#   tags = {
+#     Environment = "Production"
+#   }
+# }
 
 
 

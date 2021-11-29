@@ -2,7 +2,7 @@
 
 #Define some var's
 rg=aksomsrg
-l=eastus
+l=northeurope
 aksname=aksomsmf01
 n=aksmf
 
@@ -25,8 +25,11 @@ az aks create -n $aksname -g $rg --node-osdisk-type Ephemeral --node-osdisk-size
 # Check if the cluster 
 az aks list -g $rg -o json | jq -r '.[].addonProfiles.openServiceMesh.enabled'
 
+# SSH to AKS node
+kubectl debug node/aks-nodepool1-11528196-vmss000000 -it --image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
+
 # Get credentials to the cluster
-az aks get-credentials
+az aks get-credentials -n $aksname -g $rg
 
 # Check all deployments to see if OpenServiceMesh is up and running
 kubectl get deployments -n kube-system --selector app=osm-controller
