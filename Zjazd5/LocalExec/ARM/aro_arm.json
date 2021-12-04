@@ -1,0 +1,43 @@
+{
+    "location": "westeurope",
+    "properties": {
+        "clusterProfile": {
+            "domain": "<cluster domain>",
+            "version": "4.6.17",
+            "resourceGroupId": "/subscriptions/<subId>/resourcegroups/aro-cluster-resources-rg"
+        },
+        "consoleProfile": {
+            "url": "https://console-openshift-console.apps.<cluster domain>.westeurope.aroapp.io/"
+        },
+        "servicePrincipalProfile": {
+            "clientId": "provide-here-cluster-spn-id",
+            "clientSecret": "provide-here-cluster-spn-password"
+        },
+        "networkProfile": {
+            "podCidr": "10.128.0.0/14",
+            "serviceCidr": "172.30.0.0/16"
+        },
+        "masterProfile": {
+            "vmSize": "Standard_D8s_v3",
+            "subnetId": "/subscriptions/<subId>/resourceGroups/aro-cluster-rg/providers/Microsoft.Network/virtualNetworks/aro-vnet/subnets/master-subnet"
+        },
+        "workerProfiles": [
+            {
+                "name": "worker",
+                "vmSize": "Standard_D4s_v3",
+                "diskSizeGB": 128,
+                "subnetId": "/subscriptions/<subId>/resourceGroups/aro-cluster-rg/providers/Microsoft.Network/virtualNetworks/aro-vnet/subnets/worker-subnet",
+                "count": 3
+            }
+        ],
+        "apiserverProfile": {
+            "visibility": "Public"            
+        },
+        "ingressProfiles": [
+            {
+                "name": "default",
+                "visibility": "Public"                
+            }
+        ]
+    }
+}

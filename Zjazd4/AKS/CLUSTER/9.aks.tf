@@ -55,6 +55,8 @@ resource "azurerm_kubernetes_cluster" "aks-dev-01" {
   
   #api_server_authorized_ip_ranges = ""
   
+  #MC_<resource groupe>_<nazwa klastra>_<lokalizacji>
+
   node_resource_group     = "rg-aks-nodes"
     
   private_cluster_enabled = true

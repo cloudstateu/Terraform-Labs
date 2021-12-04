@@ -6,9 +6,11 @@ resource "azurerm_route_table" "subnet-frontend-0-10-100-0-0--24-RT" {
 }
 
 resource "azurerm_route" "subnet-frontend-0-10-100-0-0--24-RT-INTERNET" {
+  
   depends_on = [
     azurerm_firewall.fw01
   ]
+
   name                   = "Internet"
   resource_group_name    = azurerm_resource_group.dev-net-rg.name
   route_table_name       = azurerm_route_table.subnet-frontend-0-10-100-0-0--24-RT.name
