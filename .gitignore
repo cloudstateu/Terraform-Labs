@@ -2,6 +2,7 @@
 .terraform
 .terraform.lock.hcl
 terraform.tfstate
+.terraform*
 terraform.tfstate.backup
 .DS_Store
 *.key
@@ -9,3 +10,7 @@ terraform.tfstate.backup
 *.csr
 *.pem
 *.cert
+plan.md
+.DS_Store
+.gitignore
+.*
