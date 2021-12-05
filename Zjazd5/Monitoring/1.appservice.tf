@@ -42,7 +42,7 @@ resource "azurerm_monitor_diagnostic_setting" "app-mf-appdev01-monitoring" {
       category = "AllMetrics"
 
       retention_policy {
-        enabled = false
+        enabled = true
       }
     }
 

@@ -29,3 +29,15 @@ module "compute" {
 
   depends_on = [azurerm_resource_group.simplevm-rg]
 }
+
+module "vm02" {
+  source  = "Azure/compute/azurerm"
+  version = "3.14.0"
+  # insert the 3 required variablemodule "linuxservers" {
+  resource_group_name = azurerm_resource_group.simplevm-rg.name
+  vm_os_simple        = "UbuntuServer"
+  public_ip_dns       = ["linvm2ips"] // change to a unique name per datacenter region
+  vnet_subnet_id      = module.network.vnet_subnets[0]
+
+  depends_on = [azurerm_resource_group.simplevm-rg]
+}
