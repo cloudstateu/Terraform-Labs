@@ -34,10 +34,14 @@ resource "azurerm_monitor_diagnostic_setting" "app-mf-appdev01-monitoring" {
     #count                         = (var.app_service_object.log_analytics != null && var.app_service_object.log_analytics != "") ? 1 : 0
     
     name                          = "diagnostics-${azurerm_app_service.app-mf-appdev01.name}"
+    
+    #id App Service, ktory ma zrzucac Log
     target_resource_id            = azurerm_app_service.app-mf-appdev01.id
     
+    #id Log Analytics, do którego log ma trafić
     log_analytics_workspace_id    = azurerm_log_analytics_workspace.loganal01.id
 
+    #metryki i logi z App Service, ktore maja trafic do Log Analytics
     metric {
       category = "AllMetrics"
 
@@ -108,18 +112,19 @@ resource "azurerm_monitor_diagnostic_setting" "app-mf-appdev01-monitoring" {
             enabled = true
         }
     }
-    
-    
 }
 
 data "azurerm_monitor_diagnostic_categories" "azurerm_monitor_diagnostic_setting_azureappservice" {
+  #ID Serwisu dla którego chcemy sprawdzić metryki i logi, które możemy logować
   resource_id = azurerm_app_service.app-mf-appdev01.id
 }
 
 output "azurerm_monitor_diagnostic_setting_azureappservice_logs" {
+  #Wypisanie listy tzw. Logs, które można logować
    value = data.azurerm_monitor_diagnostic_categories.azurerm_monitor_diagnostic_setting_azureappservice.logs
 }
 
 output "azurerm_monitor_diagnostic_setting_azureappservice_metrics" {
+   #Wypisanie listy Metrics, które można logować
    value = data.azurerm_monitor_diagnostic_categories.azurerm_monitor_diagnostic_setting_azureappservice.metrics
 }
