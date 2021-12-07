@@ -1,0 +1,1 @@
+terraform import  "azurerm_resource_group.kmdkmdcoskolwie2" "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/mfgr04rggg" 
