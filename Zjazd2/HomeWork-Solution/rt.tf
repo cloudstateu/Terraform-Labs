@@ -1,4 +1,6 @@
 
+
+#TODO - RG do zmiany
 resource "azurerm_route_table" "rt-subnet01-hub-vnet01" {
   name                = "rt-subnet01-hub-vnet01"
   resource_group_name = data.azurerm_resource_group.tf-st-rg60.name

@@ -1,12 +1,15 @@
 provider "azurerm" {
   features {}
+  ##TODO - sub id
   subscription_id = "c6484eee-b936-412a-94d6-8dc1b4386bc2"
 }
 
+##TODO - unikalna nazwa
 data "azurerm_resource_group" "tf-st-rg60" {
   name = "tf-st-rg60"
 }
 
+#TODO - zmien RG
 resource "azurerm_virtual_network" "hub-vnet01" {
 
   name                = "hub-vnet01"

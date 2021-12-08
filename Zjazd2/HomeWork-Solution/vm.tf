@@ -1,4 +1,6 @@
 
+
+## TODO - ZMIENIC W WSZYSTKICH OBIEKTACH ref do RG
 resource "azurerm_public_ip" "pip-vm01" {
   name                = "pip-vm01"
   resource_group_name = data.azurerm_resource_group.tf-st-rg60.name

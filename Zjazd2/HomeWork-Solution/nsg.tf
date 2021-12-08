@@ -1,3 +1,5 @@
+
+#TODO - uwaga na adresy IP
 resource "azurerm_network_security_group" "nsg-subnet01-hub-vnet01" {
   name                = "nsg-subnet01-hub-vnet01"
   resource_group_name = data.azurerm_resource_group.tf-st-rg60.name
@@ -12,6 +14,7 @@ resource "azurerm_network_security_group" "nsg-subnet01-hub-vnet01" {
     source_port_range          = "*"
     destination_port_range     = "22"
     source_address_prefix      = "158.101.220.127"
+    ## TODO - ustawi adres ip swojej maszyny
     destination_address_prefix = "40.115.45.51"
   }
 
