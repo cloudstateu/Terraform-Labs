@@ -1,0 +1,5 @@
+subscription_id      = "__subscription_id__"
+resource_group_name  = "__resource_group_name__"
+storage_account_name = "__storage_account_name__"
+container_name       = "__container_name__"
+tenant_id            = "__tenant_id__"
