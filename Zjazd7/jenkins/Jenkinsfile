@@ -24,7 +24,7 @@ pipeline {
         stage('Terraform Init & Validate') {
             steps {
                 dir("Zjazd7/jenkins/network") {
-                    sh script: 'terraform init -input=false -backend-config="$BACKEND_NETWORK_CONFIG"', label: "MAIN Init"
+                    sh script: 'terraform init -input=false -backend-config="$BACKEND_NETWORK_CONFIG"', label: "Network Init"
                     sh script: 'terraform validate', label: "MAIN Validate"
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
         stage('Network: Plan') {
             steps {
                 dir("Zjazd7/jenkins/network") {
-                    sh script: 'terraform plan -out=tfplan -input=false', label: "SRD Plan"
+                    sh script: 'terraform plan -out=tfplan -input=false', label: "Network Plan"
                 }
             }
         }
@@ -46,7 +46,7 @@ pipeline {
         stage('Network: Apply') {
             steps {
                 dir("Zjazd7/jenkins/network") {
-                    sh script: 'terraform apply -input=false tfplan', label: "SRD Apply"
+                    sh script: 'terraform apply -input=false tfplan', label: "Network Apply"
                 }
             }
         }
