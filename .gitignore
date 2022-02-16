@@ -14,3 +14,7 @@ plan.md
 .DS_Store
 .gitignore
 .*
+# JetBrains IDEs
+.idea
+# Terragrunt
+.terragrunt-cache
