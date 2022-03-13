@@ -1,0 +1,9 @@
+kubectl create namespace bookstore
+kubectl create namespace bookbuyer
+kubectl create namespace bookthief
+kubectl create namespace bookwarehouse
+
+osm namespace add bookstore
+osm namespace add bookbuyer
+osm namespace add bookthief
+osm namespace add bookwarehouse

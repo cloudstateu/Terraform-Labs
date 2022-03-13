@@ -1,0 +1,5 @@
+terraform import /subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/hub-net-rg/providers/Microsoft.Network/firewallPolicies/fw01-policy/ruleCollectionGroups/fw01-policy_rule_collection_10_0_0_0__24 azurerm_firewall_policy_rule_collection_group
+
+terraform import azurerm_firewall_policy_rule_collection_group.fw01-policy_rule_collection_10_0_0_0__24 /subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/hub-net-rg/providers/Microsoft.Network/firewallPolicies/fw01-policy/ruleCollectionGroups/fw01-policy_rule_collection_10_0_0_0__24
+
+terraform import azurerm_monitor_diagnostic_setting.example "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourcegroups/hub-net-rg/providers/microsoft.network/azurefirewalls/fw01/providers/microsoft.insights/diagnosticSettings/example"
