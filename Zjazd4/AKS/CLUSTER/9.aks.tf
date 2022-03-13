@@ -36,33 +36,35 @@ data "azurerm_user_assigned_identity" "aks-dev-01-ui" {
   resource_group_name = data.azurerm_resource_group.dev-prolab.name
 }
 
-
+#subnet-data-0-10-100-3-0--24
+#"/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/hub-net-rg/providers/Microsoft.Network/firewallPolicies/fw01-policy/ruleCollectionGroups/fw01-policy_rule_collection_10_0_0_0__24"
 
 resource "azurerm_kubernetes_cluster" "aks-dev-01" {
-  name                = "aks-dev-01"
+  name                = "aks-dev-02"
   location            = data.azurerm_resource_group.dev-prolab.location
   resource_group_name = data.azurerm_resource_group.dev-prolab.name
   
-  #dns_prefix          = "aks-dev-01"
+  dns_prefix          = "aks-dev-01"
 
-  dns_prefix_private_cluster = "aks-dev-01"
+  #dns_prefix_private_cluster = "aks-dev-02"
   
-  #private_dns_zone_id = "None"
+  private_dns_zone_id = "None"
 
-  #private_cluster_public_fqdn_enabled = true
+  private_cluster_public_fqdn_enabled = true
+
+  #enable_host_encryption = true
   
-  private_dns_zone_id = data.azurerm_private_dns_zone.akszone.id
+  #private_dns_zone_id = data.azurerm_private_dns_zone.akszone.id
   
   #api_server_authorized_ip_ranges = ""
   
   #MC_<resource groupe>_<nazwa klastra>_<lokalizacji>
 
-  node_resource_group     = "rg-aks-nodes"
+  node_resource_group     = "rg-aks-nodes2"
     
   private_cluster_enabled = true
 
-  #Pewnie wersja Paid
-  
+  #Paid
   sku_tier = "Free"
 
   #set the disc encryption id of disk set
@@ -81,15 +83,21 @@ resource "azurerm_kubernetes_cluster" "aks-dev-01" {
 
     azure_active_directory {
       managed            = true
-      azure_rbac_enabled = false
+      azure_rbac_enabled = true
+      admin_group_object_ids = ["f5cd05bf-43bd-4a61-b72b-a7df6cc57d94"]
     }
   }
+
+  #disable local accounts
+  local_account_disabled = true
 
   default_node_pool {
     name           = "default"
     vnet_subnet_id = data.azurerm_subnet.subnet-frontend.id
     node_count     = 1
     vm_size        = "Standard_DS2_v2"
+    enable_host_encryption = true
+    #encryption on host
   }
 
    identity {
@@ -103,6 +111,7 @@ resource "azurerm_kubernetes_cluster" "aks-dev-01" {
       enabled                    = true
       log_analytics_workspace_id = data.azurerm_log_analytics_workspace.loganal01.id
     }
+  
 
     kube_dashboard {
       enabled = false
@@ -131,6 +140,21 @@ output "kube_config" {
   sensitive = true
 }
 
+
+#DEBUGGER
+#kubectl debug node/aks-nodepool1-12345678-vmss000000 -it --image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
+
+
+
+
+
+
+
+
+
+
+
+
 # resource "azurerm_kubernetes_cluster_node_pool" "aks-dev-01-np" {
 #   name                  = "anotherpool"
 #   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks-dev-01.id
@@ -141,12 +165,6 @@ output "kube_config" {
 #     Environment = "Production"
 #   }
 # }
-
-
-
-
-
-
 
 # oms_agent block supports the following:
 

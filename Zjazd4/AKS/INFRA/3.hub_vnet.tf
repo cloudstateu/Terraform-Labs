@@ -4,7 +4,7 @@ resource "azurerm_virtual_network" "vnet-hub" {
   resource_group_name = azurerm_resource_group.hub-net-rg.name
   address_space       = var.vnet-hub
 
-  dns_servers = ["10.10.2.4"]
+  //dns_servers = ["10.10.2.4"]
 
   #TODO - LOCAL DNS SERVERS
 

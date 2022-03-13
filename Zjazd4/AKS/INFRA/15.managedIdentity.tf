@@ -29,34 +29,47 @@ resource "azurerm_role_assignment" "aksclusterspn2aksdevnet-cluster-manager_aksc
   scope = data.azurerm_subscription.primary.id
   #scope = "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/dev-prolab0-rg"
   #scope = azurerm_resource_group.dev-prolab-rg[0].id
-  role_definition_name = azurerm_role_definition.aks-cluster-manager_akscluster.name
+  role_definition_name = "Contributor"
   principal_id         = azurerm_user_assigned_identity.aks-dev-01-ui.principal_id
   #azuread_service_principal.aksclusterinstallspn.object_id
 }
 
-resource "azurerm_role_assignment" "aksclusterspn2aksdevnet-cluster-manager_network" {
-  depends_on = [
-    azurerm_resource_group.dev-net-rg
-  ]
-  #scope                = data.azurerm_subscription.primary.id
-  scope = "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8"
-  #scope = azurerm_resource_group.dev-net-rg.id
-  role_definition_name = azurerm_role_definition.aks-cluster-manager_network.name
-  principal_id         = azurerm_user_assigned_identity.aks-dev-01-ui.principal_id
-  #azuread_service_principal.aksclusterinstallspn.object_id
-}
 
-resource "azurerm_role_assignment" "aksclusterspn2aksdevnet-cluster-manager_vm" {
-  depends_on = [
-    azurerm_resource_group.dev-net-rg
-  ]
+# resource "azurerm_role_assignment" "aksclusterspn2aksdevnet-cluster-manager_akscluster" {
+#   depends_on = [
+#     azurerm_resource_group.dev-net-rg
+#   ]
+#   scope = data.azurerm_subscription.primary.id
+#   #scope = "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8/resourceGroups/dev-prolab0-rg"
+#   #scope = azurerm_resource_group.dev-prolab-rg[0].id
+#   role_definition_name = azurerm_role_definition.aks-cluster-manager_akscluster.name
+#   principal_id         = azurerm_user_assigned_identity.aks-dev-01-ui.principal_id
+#   #azuread_service_principal.aksclusterinstallspn.object_id
+# }
 
-  scope = "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8"
+# resource "azurerm_role_assignment" "aksclusterspn2aksdevnet-cluster-manager_network" {
+#   depends_on = [
+#     azurerm_resource_group.dev-net-rg
+#   ]
+#   #scope                = data.azurerm_subscription.primary.id
+#   scope = "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8"
+#   #scope = azurerm_resource_group.dev-net-rg.id
+#   role_definition_name = azurerm_role_definition.aks-cluster-manager_network.name
+#   principal_id         = azurerm_user_assigned_identity.aks-dev-01-ui.principal_id
+#   #azuread_service_principal.aksclusterinstallspn.object_id
+# }
 
-  role_definition_name = azurerm_role_definition.aks-cluster-manager_vm.name
+# resource "azurerm_role_assignment" "aksclusterspn2aksdevnet-cluster-manager_vm" {
+#   depends_on = [
+#     azurerm_resource_group.dev-net-rg
+#   ]
 
-  principal_id = azurerm_user_assigned_identity.aks-dev-01-ui.principal_id
-}
+#   scope = "/subscriptions/ffca029c-a6e3-4630-9dfc-ff43256cd2f8"
+
+#   role_definition_name = azurerm_role_definition.aks-cluster-manager_vm.name
+
+#   principal_id = azurerm_user_assigned_identity.aks-dev-01-ui.principal_id
+# }
 
 output "rgid" {
   value = azurerm_resource_group.dev-prolab-rg[0].id

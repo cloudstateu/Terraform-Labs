@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "kv-dev" {
 }
 
 resource "azurerm_key_vault" "kv-mf-dev-01" {
-  name                = "mf-kv-dev-01"
+  name                = "mf-kv-dev-02"
   location            = azurerm_resource_group.kv-dev.location
   resource_group_name = azurerm_resource_group.kv-dev.name
   tenant_id           = data.azurerm_client_config.current.tenant_id

@@ -1,4 +1,5 @@
-resource "azurerm_network_watcher_flow_log" "test" {
+resource "azurerm_network_watcher_flow_log" "NetworkWatcher_westeurope" {
+  name = "NetworkWatcher_westeurope"
   network_watcher_name = "NetworkWatcher_westeurope"
   resource_group_name  = "NetworkWatcherRG"
 

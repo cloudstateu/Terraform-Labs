@@ -26,3 +26,18 @@ output "rg-vnet-dev-location" {
   description = "RG VNET DEV LOCATION"
   value       = module.rg-vnets-dev.location
 }
+
+
+# RG - RG-VNETS-DEV
+module "rg-vnets-prd" {
+  source = "../MODULES/resource-group"
+
+  resource_group_object = {
+     name                = "rg-vnets-prd"
+     location            = "westeurope"
+     lock_level          = "CanNotDelete"
+   
+  }
+
+  resource_group_tags = var.resource_group_tags_testrg
+}

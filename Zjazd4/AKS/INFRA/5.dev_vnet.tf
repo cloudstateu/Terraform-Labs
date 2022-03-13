@@ -5,7 +5,7 @@ resource "azurerm_virtual_network" "vnet-dev-10-100-0-0--16" {
   address_space       = var.vnet-dev
 
   #dns, ktory nie istnieje
-  dns_servers = ["10.10.2.4"]
+  #dns_servers = ["10.10.2.4"]
 
   tags = {
     "Project"     = "HUB VNET"

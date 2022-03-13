@@ -29,6 +29,14 @@ resource "azurerm_app_service" "app-mf-appdev01" {
   }
 }
 
+resource "azurerm_storage_account" "stlogs" {
+  name                     = "stlogs12mf"
+  location                = azurerm_resource_group.main_rg.location
+  resource_group_name     = azurerm_resource_group.main_rg.name
+  account_tier             = "Standard"
+  account_replication_type = "GRS"
+}
+
 resource "azurerm_monitor_diagnostic_setting" "app-mf-appdev01-monitoring" {
     #provider                      = azurerm.provider-log-analytics
     #count                         = (var.app_service_object.log_analytics != null && var.app_service_object.log_analytics != "") ? 1 : 0
@@ -40,6 +48,8 @@ resource "azurerm_monitor_diagnostic_setting" "app-mf-appdev01-monitoring" {
     
     #id Log Analytics, do którego log ma trafić
     log_analytics_workspace_id    = azurerm_log_analytics_workspace.loganal01.id
+
+    storage_account_id = azurerm_storage_account.stlogs.id
 
     #metryki i logi z App Service, ktore maja trafic do Log Analytics
     metric {

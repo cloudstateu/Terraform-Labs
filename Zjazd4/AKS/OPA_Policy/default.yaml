@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookbuyer
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bookbuyer
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: bookbuyer
+        version: v1
+    spec:
+      serviceAccountName: bookbuyer
+      nodeSelector:
+        kubernetes.io/arch: amd64
+        kubernetes.io/os: linux
+      containers:
+        - name: bookbuyer
+          image: acrpkobp.azurecr.io/openservicemesh/bookbuyer:v0.11.1
+          imagePullPolicy: Always
+          command: ["/bookbuyer"]
+          env:
+            - name: "BOOKSTORE_NAMESPACE"
+              value: bookstore
+            - name: "BOOKSTORE_SVC"
+              value: bookstore
+      imagePullSecrets:
+      - name: regcred
