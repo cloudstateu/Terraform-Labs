@@ -25,35 +25,27 @@ resource "azurerm_network_interface_security_group_association" "spoke-02nsg" {
 }
 
 # Create spoke-02 VM
-resource "azurerm_virtual_machine" "spoke-02-vnet-vm" {
-  name                  = "spoke-02-vnet-vm"
-  location              = data.azurerm_resource_group.main_rg.location
-  resource_group_name   = data.azurerm_resource_group.main_rg.name
-  network_interface_ids = [azurerm_network_interface.spoke-02-vm-nic.id]
-  vm_size               = "Standard_D2as_v5"
+resource "azurerm_linux_virtual_machine" "spoke-02-vnet-vm" {
+  name                            = "spoke-02-vnet-vm"
+  location                        = data.azurerm_resource_group.main_rg.location
+  resource_group_name             = data.azurerm_resource_group.main_rg.name
+  network_interface_ids           = [azurerm_network_interface.spoke-02-vm-nic.id]
+  size                            = "Standard_D2as_v5"
+  disable_password_authentication = false
+  admin_username                  = var.username
+  admin_password                  = var.password
+  computer_name                   = "spoke2"
 
-  storage_image_reference {
+  source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
     sku       = "16.04-LTS"
     version   = "latest"
   }
 
-  storage_os_disk {
-    name              = "spoke-02-vm-disk"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
-  }
-
-  os_profile {
-    computer_name  = "spoke02vm"
-    admin_username = var.username
-    admin_password = var.password
-  }
-
-  os_profile_linux_config {
-    disable_password_authentication = false
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
   }
 }
 
