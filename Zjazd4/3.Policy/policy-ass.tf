@@ -15,7 +15,7 @@ resource "azurerm_resource_group_policy_assignment" "policy-locations-assigment"
   parameters = <<PARAMETERS
         {
             "listOfAllowedLocations": {
-                "value": [ 
+                "value": [
                     "westeurope",
                     "northeurope"
                 ]
@@ -24,12 +24,12 @@ resource "azurerm_resource_group_policy_assignment" "policy-locations-assigment"
     PARAMETERS
 }
 
-resource "azurerm_resource_group_policy_assignment" "policy-tags-assigment" {
-  name                 = local.policy_assigment_tags_name
+resource "azurerm_resource_group_policy_assignment" "policy-vm-sizes-assigment" {
+  name                 = local.policy_assigment_sizes_name
   resource_group_id    = data.azurerm_resource_group.rg.id
-  policy_definition_id = azurerm_policy_definition.policy-tags.id
-  description          = "Przypisanie polityki policy-tags do resource group"
-  display_name         = local.policy_assigment_tags_name
+  policy_definition_id = azurerm_policy_definition.policy-vm-sizes.id
+  description          = "Przypisanie polityki policy-vm-sizes do resource group"
+  display_name         = local.policy_assigment_sizes_name
 
   metadata = <<METADATA
         {
@@ -40,8 +40,8 @@ resource "azurerm_resource_group_policy_assignment" "policy-tags-assigment" {
 
   parameters = <<PARAMETERS
         {
-            "tagName": {
-                "value": "my_tag"
+            "listOfAllowedSKUs": {
+                "value": ["D2as_v5"]
             }
         }
     PARAMETERS

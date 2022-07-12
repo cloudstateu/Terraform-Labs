@@ -53,57 +53,17 @@ PARAMETERS
 
 }
 
-resource "azurerm_policy_definition" "policy-tags" {
+locals {
+  policy = jsondecode(file("./VMSkusAllowed_Deny.json"))
+}
+
+resource "azurerm_policy_definition" "policy-vm-sizes" {
   name         = local.policy_tags_name
   display_name = local.policy_tags_name
   policy_type  = "Custom"
   mode         = "Indexed"
-  description  = "Polityka wymusza, aby zasób posiadał określony tag do sprawdzenia czy wartość jest niepusta"
-
-  metadata = <<METADATA
-     {
-         "version":  "1.0.0",
-         "category": "Tags"
-     }
-
- METADATA
-
-
-  policy_rule = <<POLICY_RULE
-     {
-       "if": {
-         "allOf": [
-           {
-             "field": "type",
-             "equals": "Microsoft.Resources/subscriptions/resourceGroups"
-           },
-           {
-             "field": "[concat('tags[', parameters('tagName'), ']')]",
-             "exists": "false"
-           },
-           {
-             "field": "name",
-             "notLike": "MC_*"
-           }
-         ]
-       },
-       "then": {
-         "effect": "deny"
-       }
-     }
- POLICY_RULE
-
-
-  parameters = <<PARAMETERS
-     {
-       "tagName": {
-         "type": "String",
-         "metadata": {
-           "displayName": "Tag Name",
-           "description": "Name of the tag, such as 'ENV'"
-         }
-       }
-     }
- PARAMETERS
-
+  description  = "Polityka wymusza tworzenie wirtualnych maszyn tylko w określonych rozmiarach."
+  metadata     = jsonencode(local.policy.properties.metadata)
+  policy_rule  = jsonencode(local.policy.properties.policyRule)
+  parameters   = jsonencode(local.policy.properties.parameters)
 }
