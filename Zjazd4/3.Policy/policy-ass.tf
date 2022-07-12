@@ -41,7 +41,7 @@ resource "azurerm_resource_group_policy_assignment" "policy-vm-sizes-assigment" 
   parameters = <<PARAMETERS
         {
             "listOfAllowedSKUs": {
-                "value": ["D2as_v5"]
+                "value": ["Standard_D2as_v5"]
             }
         }
     PARAMETERS
