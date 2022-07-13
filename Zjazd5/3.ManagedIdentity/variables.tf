@@ -1,6 +1,6 @@
 locals {
   user_assigned_identity_name = "vm-identity-${var.resources_suffix}"
-  storage_name                = "storage${var.resources_suffix}"
+  storage_name                = "storage0123${var.resources_suffix}"
   network_name                = "network-${var.resources_suffix}"
   subnet_name                 = "subnet-${var.resources_suffix}"
   nic_name                    = "nic-${var.resources_suffix}"
@@ -10,15 +10,15 @@ locals {
 
 variable "subscription_id" {
   type = string
-  default = "79283b62-f23b-4420-9ae7-1ac41de00335"
+  default = "4e363600-faee-4b13-8f77-738d7d3cb478"
 }
 
 variable "resource_group_name" {
   type = string
-  default = "link4-student0"
+  default = "ManagedIdentity"
 }
 
 variable "resources_suffix" {
   type = string
-  default = "spniak"
+  default = "mw"
 }
