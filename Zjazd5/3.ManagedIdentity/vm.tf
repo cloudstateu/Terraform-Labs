@@ -32,13 +32,16 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
-resource "azurerm_windows_virtual_machine" "example" {
+resource "azurerm_linux_virtual_machine" "example" {
   name                = local.vm_name
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name
   size                = "Standard_D2as_v5"
-  admin_username      = "spniak"
+  admin_username      = "mwolanczyk"
   admin_password      = "P@$$w0rd1234!"
+  
+  disable_password_authentication = false
+
   network_interface_ids = [
     azurerm_network_interface.nic.id,
   ]
@@ -49,9 +52,9 @@ resource "azurerm_windows_virtual_machine" "example" {
   }
 
   source_image_reference {
-    publisher = "MicrosoftWindowsServer"
-    offer     = "WindowsServer"
-    sku       = "2019-Datacenter"
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "18.04-LTS"
     version   = "latest"
   }
 
