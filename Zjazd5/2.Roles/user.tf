@@ -24,6 +24,8 @@ output "object_id_user01" {
   value = azuread_user.user01.object_id
 }
 
-output "name" {
-  value = random_password.user01-password.result
+output "password" {
+  value     = random_password.user01-password.result
+  sensitive = true
 }
+#use terraform output -json to got to know sensitive value
