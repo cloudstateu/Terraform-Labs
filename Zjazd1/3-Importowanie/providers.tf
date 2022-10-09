@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 2.77.0"
+      version = "~> 3.26.0"
     }
   }
 }
@@ -10,5 +10,5 @@ terraform {
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
-  subscription_id = "72ae933f-dab5-4a35-861e-1db14caba401"
+  subscription_id = "79283b62-f23b-4420-9ae7-1ac41de00335"
 }

@@ -1,6 +1,6 @@
 variable "sub_id" {
   type        = string
-  default     = "72ae933f-dab5-4a35-861e-1db14caba401"
+  default     = "79283b62-f23b-4420-9ae7-1ac41de00335"
 }
 
 # Wyłącznie dla celów zadaniowych, nie powinno się tak trzymać danych poufnych
@@ -21,7 +21,7 @@ variable "tags" {
   type        = map(string)
   default     = {
       owner = "Mateusz",
-      start_date = "25.09.2021",
+      start_date = "25.09.2022",
       course = "Terraform"
   }
 }

@@ -1,26 +1,23 @@
-
-resource "azurerm_app_service_plan" "app-serv-plan" {
+resource "azurerm_service_plan" "app-serv-plan" {
   name                = "app-serv-plan"
   location            = data.azurerm_resource_group.main_rg.location
   resource_group_name = data.azurerm_resource_group.main_rg.name
-
-  sku {
-    tier = "Standard"
-    size = "S1"
-  }
+  sku_name            = "S1"
+  os_type             = "Linux"
 }
 
-resource "azurerm_app_service" "app-service" {
+resource "azurerm_linux_web_app" "app-service" {
   for_each = var.app_names
-  name = each.value
+  name     = each.value
 
   location            = data.azurerm_resource_group.main_rg.location
   resource_group_name = data.azurerm_resource_group.main_rg.name
-  app_service_plan_id = azurerm_app_service_plan.app-serv-plan.id
+  service_plan_id     = azurerm_service_plan.app-serv-plan.id
 
   site_config {
-    dotnet_framework_version = each.value == "mz-ntoebook-app" ? "v2.0" : "v4.0"
-    scm_type                 = "LocalGit"
+    application_stack {
+      dotnet_version = each.value == "mz-ntoebook-app" ? "3.1" : "5.0"
+    }
   }
 
   tags = {
