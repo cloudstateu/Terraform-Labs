@@ -1,5 +1,5 @@
-resource "azurerm_route_table" "spoke-01-rt" {
-  name                          = "spoke-01-rt"
+resource "azurerm_route_table" "spoke_01_rt" {
+  name                          = "spoke_01_rt"
   location                      = data.azurerm_resource_group.main_rg.location
   resource_group_name           = data.azurerm_resource_group.main_rg.name
   disable_bgp_route_propagation = false
@@ -12,12 +12,12 @@ resource "azurerm_route_table" "spoke-01-rt" {
   }
 }
 
-resource "azurerm_subnet_route_table_association" "spoke-01-to-firewall-table-associate" {
-  subnet_id      = azurerm_subnet.vnet-spoke-01-vm-subnet.id
-  route_table_id = azurerm_route_table.spoke-01-rt.id
+resource "azurerm_subnet_route_table_association" "spoke_01_to_firewall_table_associate" {
+  subnet_id      = azurerm_subnet.vnet_spoke_01_vm_subnet.id
+  route_table_id = azurerm_route_table.spoke_01_rt.id
 }
 
-resource "azurerm_route_table" "spoke-02-rt" {
+resource "azurerm_route_table" "spoke_02_rt" {
   name                          = "spoke-02-rt"
   location                      = data.azurerm_resource_group.main_rg.location
   resource_group_name           = data.azurerm_resource_group.main_rg.name
@@ -31,7 +31,7 @@ resource "azurerm_route_table" "spoke-02-rt" {
   }
 }
 
-resource "azurerm_subnet_route_table_association" "spoke-02-to-firewall-table-associate" {
-  subnet_id      = azurerm_subnet.vnet-spoke-02-vm-subnet.id
-  route_table_id = azurerm_route_table.spoke-02-rt.id
+resource "azurerm_subnet_route_table_association" "spoke_02_to_firewall_table_associate" {
+  subnet_id      = azurerm_subnet.vnet_spoke_02_vm_subnet.id
+  route_table_id = azurerm_route_table.spoke_02_rt.id
 }

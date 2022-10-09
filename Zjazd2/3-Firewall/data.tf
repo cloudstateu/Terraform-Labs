@@ -1,3 +1,3 @@
 data "azurerm_resource_group" "main_rg" {
-  name = "" # TODO Resource group name
+  name = "bank-student0" # TODO Resource group name
 }

@@ -1,4 +1,4 @@
-resource "azurerm_public_ip" "firewall-ip" {
+resource "azurerm_public_ip" "firewall_ip" {
   name                = "firewall-ip"
   location            = data.azurerm_resource_group.main_rg.location
   resource_group_name = data.azurerm_resource_group.main_rg.name
@@ -6,14 +6,14 @@ resource "azurerm_public_ip" "firewall-ip" {
   sku                 = "Standard"
 }
 
-resource "azurerm_firewall_policy" "firewall-policy" {
+resource "azurerm_firewall_policy" "firewall_policy" {
   name                = "firewall-policy"
   location            = data.azurerm_resource_group.main_rg.location
   resource_group_name = data.azurerm_resource_group.main_rg.name
 }
 
 resource "azurerm_firewall_policy_rule_collection_group" "rules" {
-  firewall_policy_id = azurerm_firewall_policy.firewall-policy.id
+  firewall_policy_id = azurerm_firewall_policy.firewall_policy.id
   name               = "default"
   priority           = 100
 
@@ -35,13 +35,13 @@ resource "azurerm_firewall" "firewall" {
   name                = "hubfirewall"
   location            = data.azurerm_resource_group.main_rg.location
   resource_group_name = data.azurerm_resource_group.main_rg.name
-  firewall_policy_id  = azurerm_firewall_policy.firewall-policy.id
+  firewall_policy_id  = azurerm_firewall_policy.firewall_policy.id
   sku_name            = "AZFW_VNet"
   sku_tier            = "Standard"
 
   ip_configuration {
     name                 = "firewallconfiguration"
-    subnet_id            = azurerm_subnet.vnet-hub-firewall-subnet.id
-    public_ip_address_id = azurerm_public_ip.firewall-ip.id
+    subnet_id            = azurerm_subnet.vnet_hub_firewall_subnet.id
+    public_ip_address_id = azurerm_public_ip.firewall_ip.id
   }
 }
