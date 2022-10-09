@@ -34,7 +34,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "mysql" {
   virtual_network_id    = azurerm_virtual_network.vnet.id
 }
 
-resource "azurerm_private_endpoint" "key-vault" {
+resource "azurerm_private_endpoint" "key_vault" {
   name                = "pe-app-${var.resources_suffix}-kv"
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name
@@ -43,7 +43,7 @@ resource "azurerm_private_endpoint" "key-vault" {
   private_service_connection {
     is_manual_connection           = false
     name                           = "pe-app-${var.resources_suffix}-kv"
-    private_connection_resource_id = azurerm_key_vault.key-vault.id
+    private_connection_resource_id = azurerm_key_vault.key_vault.id
     subresource_names              = ["vault"]
   }
 
@@ -74,7 +74,7 @@ resource "azurerm_private_endpoint" "file" {
   }
 }
 
-resource "azurerm_private_endpoint" "pe-mysqlmaster-primary-region" {
+resource "azurerm_private_endpoint" "pe_mysqlmaster_primary_region" {
   name                = "pe-app-${var.resources_suffix}-mysql"
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name

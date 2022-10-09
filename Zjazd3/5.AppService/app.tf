@@ -17,7 +17,7 @@ resource "azurerm_linux_web_app" "app" {
     "database__client" : "mysql",
     "database__connection__database" : azurerm_mysql_database.ghost.name,
     "database__connection__host" : "${azurerm_mysql_server.mysql.name}.${azurerm_private_dns_zone.mysql.name}",
-    "database__connection__password" : "@Microsoft.KeyVault(VaultName=${azurerm_key_vault.key-vault.name};SecretName=${azurerm_key_vault_secret.mysql-password.name})",
+    "database__connection__password" : "@Microsoft.KeyVault(VaultName=${azurerm_key_vault.key_vault.name};SecretName=${azurerm_key_vault_secret.mysql_password.name})",
     "database__connection__ssl" : "true",
     "database__connection__user" : "${azurerm_mysql_server.mysql.administrator_login}@${lower(azurerm_mysql_server.mysql.name)}",
     "paths_contentPath" : "/var/lib/storage",
@@ -43,14 +43,14 @@ resource "azurerm_linux_web_app" "app" {
     name         = "appservice-ghost-primary-prod-pathMapping"
     type         = "AzureFiles"
     account_name = azurerm_storage_account.storage.name
-    share_name   = azurerm_storage_share.appsvc-share-ghost-prod.name
+    share_name   = azurerm_storage_share.appsvc_share_ghost_prod.name
     access_key   = azurerm_storage_account.storage.primary_access_key
     mount_path   = "/var/lib/storage"
   }
 }
 
-resource "azurerm_key_vault_access_policy" "appservice-ghost-primary-prod" {
-  key_vault_id       = azurerm_key_vault.key-vault.id
+resource "azurerm_key_vault_access_policy" "appservice_ghost_primary_prod" {
+  key_vault_id       = azurerm_key_vault.key_vault.id
   tenant_id          = data.azurerm_client_config.current.tenant_id
   object_id          = azurerm_linux_web_app.app.identity[0].principal_id
   secret_permissions = [

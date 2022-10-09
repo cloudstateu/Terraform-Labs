@@ -4,7 +4,7 @@ resource "azurerm_mysql_server" "mysql" {
   resource_group_name = data.azurerm_resource_group.rg.name
 
   administrator_login          = "mysqladminghost"
-  administrator_login_password = random_password.mysql-server-password.result
+  administrator_login_password = random_password.mysql_server_password.result
 
   sku_name   = "GP_Gen5_2"
   storage_mb = 5120

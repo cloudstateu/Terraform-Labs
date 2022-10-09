@@ -26,5 +26,5 @@ resource "azurerm_subnet" "endpoints" {
   resource_group_name                            = data.azurerm_resource_group.rg.name
   virtual_network_name                           = azurerm_virtual_network.vnet.name
   address_prefixes                               = ["10.0.1.0/24"]
-  enforce_private_link_endpoint_network_policies = true
+  private_endpoint_network_policies_enabled = true
 }

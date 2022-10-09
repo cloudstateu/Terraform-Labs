@@ -1,4 +1,4 @@
-resource "azurerm_key_vault" "key-vault" {
+resource "azurerm_key_vault" "key_vault" {
   name                = local.kv_name
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name
@@ -29,14 +29,14 @@ resource "azurerm_key_vault" "key-vault" {
   }
 }
 
-resource "random_password" "mysql-server-password" {
+resource "random_password" "mysql_server_password" {
   length  = 20
   special = true
 }
 
-resource "azurerm_key_vault_secret" "mysql-password" {
+resource "azurerm_key_vault_secret" "mysql_password" {
   name         = "mysql-password"
-  value        = random_password.mysql-server-password.result
-  key_vault_id = azurerm_key_vault.key-vault.id
+  value        = random_password.mysql_server_password.result
+  key_vault_id = azurerm_key_vault.key_vault.id
 }
 

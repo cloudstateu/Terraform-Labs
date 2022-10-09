@@ -10,13 +10,16 @@ locals {
 }
 
 variable "subscription_id" {
-  type = string
+  type    = string
+  default = "79283b62-f23b-4420-9ae7-1ac41de00335"
 }
 
 variable "resource_group_name" {
-  type = string
+  type    = string
+  default = "bank-student0"
 }
 
 variable "resources_suffix" {
-  type = string
+  type    = string
+  default = "student0"
 }
