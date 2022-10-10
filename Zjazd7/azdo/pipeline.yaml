@@ -1,0 +1,24 @@
+parameters:
+  - name: command
+    displayName: 'Terraform command'
+    type: string
+    default: 'apply'
+    values:
+      - 'apply'
+      - 'destroy'
+
+trigger: none
+
+pool:
+  name: Azure Pipelines
+
+variables:
+  - group: test-variable-group
+
+stages:
+  - template: './templates/deploy-module.yaml'
+    parameters:
+      name: 'Network'
+      backend_key: 'network.tfstate'
+      directory: './network'
+      command: ${{parameters.command}}

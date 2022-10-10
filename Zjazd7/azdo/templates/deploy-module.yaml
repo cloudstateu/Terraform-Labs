@@ -1,0 +1,85 @@
+parameters:
+  name: ''
+  backend_key: ''
+  directory: ''
+  command: ''
+
+stages:
+  - stage: 'terraformPreparePlan${{parameters.name}}'
+    displayName: 'Prepare plan for ${{parameters.name}}'
+    jobs:
+      - job: 'terraformPlan'
+        ${{ if startsWith(parameters.command, 'destroy') }}:
+          displayName: 'Terraform plan -destroy (${{parameters.directory}})'
+        ${{ else }}:
+          displayName: 'Terraform plan (${{parameters.directory}})'
+        pool: 
+          name: Azure Pipelines
+        steps:
+          - template: './tf-init.yaml'
+            parameters:
+              backend_key: '${{parameters.backend_key}}'
+              directory: '${{parameters.directory}}'
+
+          - task: TerraformTaskV3@3
+            displayName: 'Terraform plan'
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              ${{ if eq(parameters.command, 'destroy') }}:
+                commandOptions: '-destroy -out=$(Build.ArtifactStagingDirectory)/out.plan -detailed-exitcode'
+              ${{ else }}:
+                commandOptions: "-out=$(Build.ArtifactStagingDirectory)/out.plan -detailed-exitcode"
+              workingDirectory: '$(System.DefaultWorkingDirectory)/${{parameters.directory}}'
+              environmentServiceNameAzureRM: '$(spn_name)'
+
+          - task: PublishPipelineArtifact@1
+            displayName: Publish artifact
+            inputs:
+              targetPath: '$(Build.ArtifactStagingDirectory)'
+              publishLocation: 'pipeline'
+              artifactName: 'tf-artifacts-${{parameters.name}}'
+
+  - stage: 'terraformExecutePlan${{parameters.name}}'
+    displayName: 'Execute plan for ${{parameters.name}}'
+    dependsOn: 'terraformPreparePlan${{parameters.name}}'
+    condition: not(or(failed(), canceled()))
+    jobs:
+      - deployment: terraformExecute
+        ${{ if eq(parameters.command, 'destroy') }}:
+          displayName: 'Terraform destroy (${{parameters.directory}})'
+        ${{ else }}:
+          displayName: 'Terraform apply (${{parameters.directory}})'
+        environment: '$(environment)'
+        strategy:
+            runOnce:    
+              deploy:
+                steps:
+                - checkout: self
+
+                - task: DownloadPipelineArtifact@2
+                  displayName: Download artifact
+                  inputs:
+                    artifact: 'tf-artifacts-${{parameters.name}}'
+                    path: $(System.DefaultWorkingDirectory)
+
+                - template: './tf-init.yaml'
+                  parameters:
+                    backend_key: '${{parameters.backend_key}}'
+                    directory: '${{parameters.directory}}'
+
+                - task: TerraformTaskV3@3
+                  name: 'terraformExecute'
+                  ${{ if eq(parameters.command, 'destroy') }}:
+                    displayName: 'Terraform destroy'
+                  ${{ else }}:
+                    displayName: 'Terraform apply'
+                  inputs:
+                    provider: 'azurerm'
+                    ${{ if eq(parameters.command, 'destroy') }}:
+                      command: 'destroy'
+                    ${{ else }}:
+                      command: 'apply'
+                    workingDirectory: '$(System.DefaultWorkingDirectory)/${{parameters.directory}}'
+                    commandOptions: '-auto-approve $(System.DefaultWorkingDirectory)/out.plan'
+                    environmentServiceNameAzureRM: '$(spn_name)'

@@ -1,0 +1,30 @@
+parameters:
+  backend_key: ''
+  directory: ''
+
+steps:
+  - bash: echo "##vso[task.setvariable variable=backend_key]${{parameters.backend_key}}"
+    displayName: Set parameters as variables
+
+  - task: qetza.replacetokens.replacetokens-task.replacetokens@4
+    displayName: 'Replace tokens *.tf'
+    inputs:
+      targetFiles: '$(System.DefaultWorkingDirectory)/${{parameters.directory}}/*.tf'
+      tokenPattern: rm
+
+  - task: TerraformInstaller@0
+    displayName: 'Install terraform 1.2.6'
+    inputs:
+      terraformVersion: '1.2.6'
+
+  - task: TerraformTaskV3@3
+    displayName: 'Terraform init'
+    inputs:
+      provider: 'azurerm'
+      command: 'init'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/${{parameters.directory}}'
+      backendServiceArm: '$(spn_name)'
+      backendAzureRmResourceGroupName: '$(sa_rg_name)'
+      backendAzureRmStorageAccountName: '$(sa_name)'
+      backendAzureRmContainerName: '$(sa_container_name)'
+      backendAzureRmKey: '${{parameters.backend_key}}'
