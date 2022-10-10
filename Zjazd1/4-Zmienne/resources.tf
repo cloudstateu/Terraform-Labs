@@ -25,15 +25,15 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                = "example-machine"
-  resource_group_name = data.azurerm_resource_group.main_rg.name
-  location            = data.azurerm_resource_group.main_rg.location
-  size                = "Standard_B1s"
+  name                            = "example-machine"
+  resource_group_name             = data.azurerm_resource_group.main_rg.name
+  location                        = data.azurerm_resource_group.main_rg.location
+  size                            = "Standard_B1s"
   disable_password_authentication = false
 
   admin_username = var.username
   admin_password = var.password
-  
+
   network_interface_ids = [
     azurerm_network_interface.nic.id,
   ]

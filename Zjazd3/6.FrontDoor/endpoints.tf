@@ -48,7 +48,7 @@ resource "azurerm_private_endpoint" "key-vault" {
   }
 
   private_dns_zone_group {
-    name                 = "pe-app-${var.resources_suffix}-kv"
+    name = "pe-app-${var.resources_suffix}-kv"
     private_dns_zone_ids = [
       azurerm_private_dns_zone.key_vault.id
     ]

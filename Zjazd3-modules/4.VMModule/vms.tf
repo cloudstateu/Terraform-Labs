@@ -1,5 +1,5 @@
 module "vm_spoke_01" {
-  source    = "./modules/vm"
+  source = "./modules/vm"
   providers = {
     azurerm.virtual-machine = azurerm.spoke
   }
@@ -13,7 +13,7 @@ module "vm_spoke_01" {
 }
 
 module "vm_spoke_02" {
-  source    = "./modules/vm"
+  source = "./modules/vm"
   providers = {
     azurerm.virtual-machine = azurerm.spoke
   }

@@ -41,28 +41,28 @@ resource "azurerm_subnet" "vnet_spoke_02_vm_subnet" {
 }
 
 resource "azurerm_virtual_network_peering" "vnet_hub_to_spoke_01_peering" {
-  name                      = "hub-to-spoke-01"
-  resource_group_name       = data.azurerm_resource_group.main_rg.name
-  virtual_network_name      = azurerm_virtual_network.vnet_hub.name
-  remote_virtual_network_id = azurerm_virtual_network.vnet_spoke_01.id
+  name                         = "hub-to-spoke-01"
+  resource_group_name          = data.azurerm_resource_group.main_rg.name
+  virtual_network_name         = azurerm_virtual_network.vnet_hub.name
+  remote_virtual_network_id    = azurerm_virtual_network.vnet_spoke_01.id
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
 }
 
 resource "azurerm_virtual_network_peering" "vnet_spoke_01_to_hub_peering" {
-  name                      = "spoke-01-to-hub"
-  resource_group_name       = data.azurerm_resource_group.main_rg.name
-  virtual_network_name      = azurerm_virtual_network.vnet_spoke_01.name
-  remote_virtual_network_id = azurerm_virtual_network.vnet_hub.id
+  name                         = "spoke-01-to-hub"
+  resource_group_name          = data.azurerm_resource_group.main_rg.name
+  virtual_network_name         = azurerm_virtual_network.vnet_spoke_01.name
+  remote_virtual_network_id    = azurerm_virtual_network.vnet_hub.id
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
 }
 
 resource "azurerm_virtual_network_peering" "vnet_hub_to_spoke_02_peering" {
-  name                      = "hub-to-spoke-02"
-  resource_group_name       = data.azurerm_resource_group.main_rg.name
-  virtual_network_name      = azurerm_virtual_network.vnet_hub.name
-  remote_virtual_network_id = azurerm_virtual_network.vnet_spoke_02.id
+  name                         = "hub-to-spoke-02"
+  resource_group_name          = data.azurerm_resource_group.main_rg.name
+  virtual_network_name         = azurerm_virtual_network.vnet_hub.name
+  remote_virtual_network_id    = azurerm_virtual_network.vnet_spoke_02.id
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
 }

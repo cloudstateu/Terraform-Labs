@@ -15,7 +15,7 @@ resource "azurerm_subnet" "vnet-hub-firewall-subnet" {
 }
 
 module "vnet_spoke_01" {
-  source    = "./modules/spoke"
+  source = "./modules/spoke"
   providers = {
     azurerm.hub   = azurerm.hub
     azurerm.spoke = azurerm.spoke
@@ -28,7 +28,7 @@ module "vnet_spoke_01" {
   location                  = data.azurerm_resource_group.spoke_rg.location
   spoke_number              = 1
   spoke_resource_group_name = data.azurerm_resource_group.spoke_rg.name
-  subnets                   = {
+  subnets = {
     "vm" = {
       name             = "vm-app"
       address_prefixes = ["10.1.0.0/24"]
@@ -37,7 +37,7 @@ module "vnet_spoke_01" {
 }
 
 module "vnet_spoke_02" {
-  source    = "./modules/spoke"
+  source = "./modules/spoke"
   providers = {
     azurerm.hub   = azurerm.hub
     azurerm.spoke = azurerm.spoke
@@ -50,7 +50,7 @@ module "vnet_spoke_02" {
   location                  = data.azurerm_resource_group.spoke_rg.location
   spoke_number              = 2
   spoke_resource_group_name = data.azurerm_resource_group.spoke_rg.name
-  subnets                   = {
+  subnets = {
     "vm" = {
       name             = "vm-app"
       address_prefixes = ["10.2.0.0/24"]

@@ -50,9 +50,9 @@ resource "azurerm_linux_web_app" "app" {
 }
 
 resource "azurerm_key_vault_access_policy" "appservice_ghost_primary_prod" {
-  key_vault_id       = azurerm_key_vault.key_vault.id
-  tenant_id          = data.azurerm_client_config.current.tenant_id
-  object_id          = azurerm_linux_web_app.app.identity[0].principal_id
+  key_vault_id = azurerm_key_vault.key_vault.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = azurerm_linux_web_app.app.identity[0].principal_id
   secret_permissions = [
     "Backup",
     "Delete",
